@@ -36,7 +36,7 @@ void insertion_sort_list(listint_t **list)
 				*list = next_node;
 			head_node = next_node->prev;
 			swapped = true;
-			print_list(list);
+			print_list(*list);
 			if (head_node == NULL)
 				break;
 		}
