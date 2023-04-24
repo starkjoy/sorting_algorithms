@@ -10,7 +10,7 @@
 void selection_sort(int *array, size_t size)
 {
 	size_t current_index;
-	int minimum_index;
+	size_t minimum_index;
 	size_t unsorted_index;
 	int minimum_value;
 
