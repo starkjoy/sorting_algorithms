@@ -9,16 +9,17 @@
 
 void selection_sort(int *array, size_t size)
 {
-	int current_index;
+	size_t current_index;
 	int minimum_index;
-	int unsorted_index;
+	size_t unsorted_index;
 	int minimum_value;
 
 	for (current_index = 0; current_index < size - 1; current_index++)
 	{
 		minimum_index = current_index;
 
-		for (unsorted_index = current_index + 1; unsorted_index < size; unsorted_index++)
+		for (unsorted_index = current_index + 1; unsorted_index < size;
+				unsorted_index++)
 		{
 			if (array[unsorted_index] < array[minimum_index])
 				minimum_index = unsorted_index;
