@@ -28,10 +28,13 @@ void selection_sort(int *array, size_t size)
 				minimum_index = unsorted_index;
 		}
 
-		minimum_value = array[current_index];
-		array[current_index] = array[minimum_index];
-		array[minimum_index] = minimum_value;
+		if (minimum_index != current_index)
+		{
+			minimum_value = array[current_index];
+			array[current_index] = array[minimum_index];
+			array[minimum_index] = minimum_value;
 
-		print_array(array, size);
+			print_array(array, size);
+		}
 	}
 }
