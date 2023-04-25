@@ -1,40 +1,43 @@
 #include "sort.h"
-#include <stdlib.h>
 
 /**
- * partition - Lomuto partition scheme
+ * quicksort - recursive process for quick sort
  *
  * @array: array of integers
  * @low: lowest index of partition
  * @high: highest index of partition
  * @size: size of array
- *
- * Return: index of pivot element
  */
 
-size_t partition(int *array, int low, int high, size_t size)
+void quicksort(int *array, size_t size, int low, int high)
 {
 	int pivot, tmp, i, j;
 
-	i = low - 1;
-	pivot = array[high];
-
-	for (j = low; j <= high; j++)
+	if (low < high)
 	{
-		if (array[j] < pivot)
+		pivot = array[high];
+		i = low - 1;
+		for (j = low; j <= high - 1; j++)
 		{
 			i++;
-			tmp = array[i];
-			array[i] = array[j];
-			array[j] = tmp;
+			if (i != j)
+			{
+				tmp = array[i];
+				array[i] = array[j];
+				array[j] = tmp;
+				print_array(array, size);
+			}
+		}
+		if (array[i + 1] != array[high])
+		{
+			tmp = array[i + 1];
+			array[i + 1] = array[high];
+			array[high] = tmp;
 			print_array(array, size);
 		}
+		quicksort(array, size, low, i);
+		quicksort(array, size, i + 2, high);
 	}
-	tmp = array[i + 1];
-	array[i + 1] = array[high];
-	array[high] = tmp;
-	print_array(array, size);
-	return (i + 1);
 }
 
 /**
@@ -47,20 +50,8 @@ size_t partition(int *array, int low, int high, size_t size)
 
 void quick_sort(int *array, size_t size)
 {
-	int low, high;
-	size_t pi;
-
-	low = 0;
-	high = size - 1;
-
 	if (array == NULL || size < 2)
 		return;
 
-	if (low < high)
-	{
-		pi = partition(array, low, high, size);
-		if (pi > 0)
-			quick_sort(array, pi);
-		quick_sort(array + pi + 1, size - pi - 1);
-	}
-} 
+	quicksort(array, size, 0, size - 1);
+}
